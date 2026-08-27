@@ -55,21 +55,27 @@ Los resultados procesados se exportan a `data/processed/` y alimentan el dashboa
 - Categorías con muestra reducida (por ejemplo, hogares con 5 o más menores a cargo) fueron agrupadas para evitar estimaciones inestables.
 
 ## 7. Estructura del repositorio
-├── app.py # Dashboard interactivo (Streamlit)
-├── requirements.txt # Dependencias con versiones fijas
-├── runtime.txt # Versión de Python para despliegue
+```text
+├── app.py                          # Dashboard interactivo (Streamlit)
+├── requirements.txt                # Dependencias con versiones fijas
+├── runtime.txt                     # Versión de Python para despliegue
+│
 ├── data/
-│ ├── raw/ # Datos originales sin procesar
-│ ├── raw_zips/ # Archivos comprimidos originales
-│ └── processed/ # Datos limpios y agregados (alimentan el dashboard)
+│   ├── raw/                        # Datos originales sin procesar
+│   ├── raw_zips/                   # Archivos comprimidos originales
+│   └── processed/                  # Datos limpios y agregados para el dashboard
+│
 ├── notebooks/
-│ ├── 001_pre_processing.ipynb # Limpieza, integración y armonización de fuentes
-│ └── 002_post_processing_and_analysis.ipynb # Indicadores, correlaciones y modelo logit
+│   ├── 001_pre_processing.ipynb    # Limpieza, integración y armonización
+│   └── 002_post_processing_and_analysis.ipynb
+│                                    # Indicadores, correlaciones y modelo logit
+│
 ├── outputs/
-│ ├── tables/ # Tablas de resultados exportadas
-│ └── figures/ # Gráficos exportados
+│   ├── tables/                     # Tablas de resultados exportadas
+│   └── figures/                    # Gráficos exportados
+│
 └── README.md
-
+```
 
 ## 8. Instrucciones de ejecución
 
