@@ -12,7 +12,7 @@
 
 El deterioro de la salud mental y la percepción negativa de salud en Bogotá están fuertemente condicionados por determinantes estructurales: inseguridad alimentaria, tiempo de residencia, brechas de género en el cuidado y desigual acceso a infraestructura verde. Este proyecto explora dos dimensiones complementarias de esta problemática:
 
-1. **Dimensión territorial:** ¿existe relación entre la infraestructura verde disponible y los eventos de conducta suicida por localidad?
+1. **Dimensión territorial:** ¿existe relación entre la infraestructura verde disponible y la tasa de eventos de conducta suicida por localidad?
 2. **Dimensión individual/hogar:** ¿qué factores del hogar (tamaño, número de menores a cargo, rol familiar) se asocian con una peor salud autopercibida?
 
 Este análisis retoma directamente la problemática destacada en la jornada de apertura del DataJam ("El Suicidio en Bogotá — Un Perfil Diferente"), ampliándola con un enfoque de determinantes sociales estructurales.
@@ -37,8 +37,8 @@ Este análisis retoma directamente la problemática destacada en la jornada de a
 
 El análisis se desarrolló en dos notebooks secuenciales:
 
-- **`001_pre_processing.ipynb`**: carga, limpieza y armonización de las cuatro fuentes de datos (corrección de encoding, normalización de nombres de localidades entre fuentes con convenciones distintas), cálculo de indicadores agregados por localidad, y construcción del dataset maestro geoespacial (`master_mental_health_bogota_2025.geojson`).
-- **`002_post_processing_and_analysis.ipynb`**: cálculo de indicadores epidemiológicos (2023-2025), análisis de brecha de género en conducta suicida, análisis de correlación entre infraestructura verde y suicidios por localidad, y modelo de regresión logística binaria para identificar determinantes de la salud autopercibida (variable `A3`: tamaño del hogar, `A4`: menores de 18 años a cargo, `A6x2`: parentesco con el jefe de hogar).
+- **`001_pre_processing.ipynb`**: carga, limpieza y armonización de las cinco fuentes de datos (corrección de encoding, normalización de nombres de localidades entre fuentes con convenciones distintas), cálculo de indicadores agregados por localidad —incluyendo la población promedio 2023-2025 por localidad, usada para ajustar los eventos de conducta suicida por tamaño poblacional—, y construcción del dataset maestro geoespacial (`master_mental_health_bogota_2025.geojson`).
+- **`002_post_processing_and_analysis.ipynb`**: cálculo de indicadores epidemiológicos (2023-2025), análisis de brecha de género en conducta suicida, cálculo de la **tasa de suicidios por 100,000 habitantes** y su correlación con infraestructura verde por localidad, y modelo de regresión logística binaria para identificar determinantes de la salud autopercibida (variable `A3`: tamaño del hogar, `A4`: menores de 18 años a cargo, `A6x2`: parentesco con el jefe de hogar).
 
 Los resultados procesados se exportan a `data/processed/` y alimentan el dashboard interactivo (`app.py`), construido en Streamlit.
 
@@ -47,12 +47,12 @@ Los resultados procesados se exportan a `data/processed/` y alimentan el dashboa
 - Existe una brecha de género marcada en los eventos de conducta suicida: los hombres representan la mayoría de los casos registrados en las 20 localidades, consistente con patrones epidemiológicos nacionales.
 - El número de menores de 18 años a cargo (A4) se asocia de forma significativa (p<0.05) con mayor probabilidad de reportar salud deficiente, incluso controlando por parentesco y tamaño del hogar.
 - El parentesco con el jefe del hogar (A6x2) es el determinante con mayor efecto en el modelo: ser suegra/suegro se asocia con la mayor reducción en probabilidad de mala salud percibida, mientras que ser hermana/o o hija/o del jefe de hogar se asocia con mayor probabilidad.
-- La correlación entre área verde total y suicidios registrados a nivel de localidad es positiva, pero se documenta como probable efecto de confusión por tamaño poblacional (ver limitaciones en el dashboard), no como relación causal.
+- La correlación entre área verde total y suicidios registrados a nivel de localidad, calculada inicialmente sobre conteos absolutos, era positiva pero se sospechaba como un artefacto del tamaño poblacional de cada localidad (falacia ecológica). Al incorporar datos oficiales de población por localidad (Secretaría Distrital de Salud, 2023-2025) y recalcular una **tasa de suicidios por 100,000 habitantes**, la correlación se vuelve prácticamente nula (r = -0.082, p = 0.733, n = 20), confirmando que la relación observada originalmente era, en efecto, un efecto de confusión por población y no una asociación real entre ambas variables.
 
 ## 6. Limitaciones
 
 - El modelo logit tiene un pseudo R² bajo (aproximadamente 0.012), esperable en modelos de salud percibida con datos transversales de encuesta — el objetivo es identificar asociaciones significativas, no maximizar poder predictivo.
-- La correlación territorial (verde vs. suicidios) es a nivel agregado (n=20 localidades) y no controla por población, por lo que es susceptible a falacia ecológica.
+- La correlación territorial (verde vs. tasa de suicidios) sigue siendo a nivel agregado (n=20 localidades), por lo que cualquier inferencia a nivel individual debe evitarse. Aun ajustando por población, el tamaño muestral reducido (20 unidades territoriales) limita la potencia estadística para detectar asociaciones moderadas.
 - Categorías con muestra reducida (por ejemplo, hogares con 5 o más menores a cargo) fueron agrupadas para evitar estimaciones inestables.
 
 ## 7. Estructura del repositorio
