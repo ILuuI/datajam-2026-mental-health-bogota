@@ -1,0 +1,18 @@
+METADATO;DESCRIPCION
+Serie de tiempo desde;2012
+Definición del evento ;Acto autolesivo intencionado con resultado de muerte
+Utilidad ;La tasa de los eventos de cada una de las tipologías de la conducta suicida es considerada uno de los principales indicadores de la salud mental, permitiendo identificar grupos que requieren acciones de prevención del evento
+Unidad de medición;"Tasa  de suicidio
+
+"
+Periodicidad;Semestral
+Meta ;A 2031, disminuir la tasa de mortalidad por suicidio y lesiones auto infligidas a 5,0 por 100.000 habitantes (Plan Decenal de Salud Pública 2022-2031)
+Fuente de Información Numerador;"
+* Instituto Nacional de Medicina Legal y Ciencias Forenses - INMLCF - Grupo: Centro de Referencia Nacional sobre Violencia - GCERN Base: Sistema de Información Red de Desaparecidos y Cadáveres - SIRDEC 2012 -2025"
+Fuente de Información Denominador;Proyecciones de población, localidad y Bogotá 2005 - 2035.  Contrato interadministrativo 500 de 2025 firmado entre el Departamento Administrativo Nacional de Estadística (DANE) y la Secretaría Distrital de Planeación (SDP) y la Región Metropolitana de Bogotá-Cundinamarca (RMBC).
+Localidad;Localidad de ocurrencia
+Sexo;Condición orgánica que distingue a los machos de las hembras
+Año;Periodo de recolección de la información 
+Formula de cálculo;"
+
+Número de casos de mortalidad por suicidio/ Población distrital y localidad * 100.000 HB"

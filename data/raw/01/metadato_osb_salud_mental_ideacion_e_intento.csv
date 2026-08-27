@@ -1,0 +1,35 @@
+﻿METADATO;DESCRIPCION
+Serie de tiempo desde;2012
+Definición del evento ;La conducta de ideación suicida se refiere a pensamientos en el que la persona considera la opción de atentar contra su propia vida. Intento suicida como una “conducta potencialmente lesiva auto infligida y sin resultado fatal, para la que existe evidencia, implícita o explícita, de intencionalidad de provocarse la muerte.
+Utilidad ;La tasa de los eventos de cada una de las tipologías de la conducta suicida es considerada uno de los principales indicadores de la salud mental, permitiendo identificar grupos que requieren acciones de prevención del evento
+Unidad de medición;"Tasa de ideación sucida.
+Tasa de intento suicida.
+
+"
+Periodicidad;Semestral
+Meta ;A 2031, disminuir la tasa de mortalidad por suicidio y lesiones auto infligidas a 5,0 por 100.000 habitantes (Plan Decenal de Salud Pública 2022-2031)
+Fuente de Información Numerador;"* Subsistema de vigilancia epidemiológica de la conducta suicida (SISVECOS) bases anuales 2012 -2026 primer semestre
+"
+Fuente de Información Denominador;Proyecciones de población, localidad y Bogotá 2005 - 2035.  Contrato interadministrativo 500 de 2025 firmado entre el Departamento Administrativo Nacional de Estadística (DANE) y la Secretaría Distrital de Planeación (SDP) y la Región Metropolitana de Bogotá-Cundinamarca (RMBC).
+Localidad;Localidad de residencia 
+Código localidad;Código de localidad de residencia 
+Sexo;Condición orgánica que distingue a los machos de las hembras
+Año notificación;Periodo de recolección de la información 
+Nombre UPZ;UPZ de residencia
+Ciclo vital;Clasificación de ciclo vital
+Enfermedades dolorosas ;Tipo de factor desencadenante
+Maltrato sexual;Tipo de factor desencadenante
+Muerte de familiar;Tipo de factor desencadenante
+Conflicto de pareja;Tipo de factor desencadenante (problemas de pareja)
+Problemas económicos;Tipo de factor desencadenante
+Esc educ;Tipo de factor desencadente (problemas escolares)
+Problemas juridicos;Tipo de factor desencadenante
+Problemas laborales;Tipo de factor desencadenante
+Suicidio amigo;Tipo de factor desencadenante
+Población diferencial;Tipo de población diferencial
+Edad;Edad biológica de la persona 
+Nivel educativo;"Tipo de nivel educativo de la persona
+"
+Clasificación de la conducta;"Tipo de conducta suicida
+"
+Formula de cálculo;* Número de casos de ideación suicida o intento suicida / Población distrital y localidad * 10.000 HB
