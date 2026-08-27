@@ -269,7 +269,7 @@ with tab3:
             xytext=(5, 5), textcoords="offset points", fontsize=8, alpha=0.8,
         )
     ax.set_title("Relación entre Infraestructura Verde y Eventos Epidemiológicos (2023-2025)", fontweight="bold")
-    ax.set_xlabel("Área Verde Total en Metros Cuadrados ($m^2$)")
+    ax.set_xlabel("Área Verde Total en Metros Cuadrados (m²)")
     ax.set_ylabel("Total de Suicidios Registrados (2023-2025)")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
