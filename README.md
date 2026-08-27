@@ -79,36 +79,18 @@ Los resultados procesados se exportan a `data/processed/` y alimentan el dashboa
 
 ## 8. Instrucciones de ejecución
 
-### Notebooks (análisis completo)
-1. Clona el repositorio y abre los notebooks en Google Colab o Jupyter.
-2. Ejecuta `001_pre_processing.ipynb` de principio a fin (genera el GeoJSON maestro y los CSV procesados).
-3. Ejecuta `002_post_processing_and_analysis.ipynb` de principio a fin (genera indicadores, modelo logit y tablas para el dashboard).
-
-### Dashboard (visualización)
-```bash
-python -m venv venv
-venv\Scripts\activate          # Windows
-# source venv/bin/activate     # Mac/Linux
-
-pip install -r requirements.txt
-streamlit run app.py
-```
-
-El dashboard también está desplegado públicamente en:
-https://datajam-2026-mental-health-bogota-luugap.streamlit.app
-
-## 8.1 Reproducibilidad (importante)
+### Reproducibilidad del análisis (notebooks)
 
 Este repositorio contiene los **outputs y datos ya procesados** (`data/processed/`, `outputs/`)
 necesarios para el deploy del dashboard en Streamlit. **No los uses como punto de partida**
-para evaluar reproducibilidad, ya que ejecutar los notebooks sobre ellos los sobrescribirá.
+para reproducir el análisis, ya que ejecutar los notebooks sobre ellos los sobrescribirá.
 
 Si tu objetivo es reproducir el experimento desde cero:
 
 1. **No clones el repositorio completo.**
 2. Abre directamente `notebooks/001_pre_processing.ipynb` desde GitHub en Google Colab:
 
-https://colab.research.google.com/drive/1xiMO17akx56fSNPNnHmoOhOhok32rMBy?usp=sharing
+   https://colab.research.google.com/github/ILuuI/datajam-2026-mental-health-bogota/blob/main/notebooks/001_pre_processing.ipynb
 
 3. Ejecuta la **primera celda**, que:
    - Monta tu Google Drive.
@@ -128,6 +110,28 @@ https://colab.research.google.com/drive/1xiMO17akx56fSNPNnHmoOhOhok32rMBy?usp=sh
 Esto garantiza que todos los resultados (GeoJSON maestro, indicadores, modelo logit,
 figuras) se generen desde los datos crudos, en tu propio Google Drive, sin depender de
 ni sobrescribir los archivos pre-calculados que usa el dashboard en producción.
+
+### Dashboard (visualización)
+
+Para simplemente **ver el dashboard**, no necesitas ejecutar nada: está desplegado
+públicamente en:
+https://datajam-2026-mental-health-bogota-luugap.streamlit.app
+
+Si en cambio quieres **ejecutarlo o modificarlo localmente**, sí necesitas el repositorio
+completo (a diferencia del flujo de reproducibilidad anterior), ya que `app.py` depende
+de `data/processed/`, `requirements.txt` y `runtime.txt` tal como están en el repo:
+
+```bash
+git clone https://github.com/ILuuI/datajam-2026-mental-health-bogota.git
+cd datajam-2026-mental-health-bogota
+
+python -m venv venv
+venv\Scripts\activate          # Windows
+# source venv/bin/activate     # Mac/Linux
+
+pip install -r requirements.txt
+streamlit run app.py
+```
 
 ## 9. Equipo
 
