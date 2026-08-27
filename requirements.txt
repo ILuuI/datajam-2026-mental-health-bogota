@@ -1,0 +1,6 @@
+streamlit==1.62.0
+pandas==2.2.3
+geopandas==1.1.4
+matplotlib==3.10.0
+seaborn==0.13.2
+statsmodels==0.14.6
