@@ -94,7 +94,7 @@ Si tu objetivo es reproducir el experimento desde cero:
 
 3. Ejecuta la **primera celda**, que:
    - Monta tu Google Drive.
-   - Crea (o verifica) una carpeta de proyecto en tu Drive (`DataJAM_Bogota_2026/`).
+   - Crea (o verifica) una carpeta de proyecto en tu Drive (`ej. DataJAM_Bogota_2026/`).
    - Descarga automáticamente solo lo estrictamente necesario (`notebooks/` y `data/raw_zips/`)
      mediante `git sparse-checkout`, sin incluir los resultados ya calculados.
    - Si la carpeta ya existe de una corrida previa, te preguntará si deseas sobrescribirla;
