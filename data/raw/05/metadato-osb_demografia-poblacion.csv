@@ -1,0 +1,13 @@
+METADATO;DESCRIPCIÓN
+Serie de tiempo desde;2005 - 2035
+Definición del indicador;Número de habitantes según características de interés
+Utilidad ;Describir la distribución anual de la población según sexo, edad localidad y UPL de residencia
+Unidad de medición;Número de habitantes
+Fuente de Información ;"Proyecciones de población, localidad y Bogotá, UPL 2005 - 2035. Contrato Interadministrativo 500 de 2025 - DANE, Secretaría Distrital de Planeación (SDP)  y Región Metropolitana Bogotá Cundinamarca (RMBC); agosto de 2025"
+Fórmula;Estimación de retroproyecciones y proyecciones para Bogotá, sus localidades y UPL.  
+Año;Periodo de recolección de la información 
+Código;Número asignado a la división territorial
+Área;Localidad o UPL de residencia de la población
+Sexo;Categoría dada según sea hombre o mujer
+Grupo edad;Categorías según grupo de edad al que pertenece la población
+Población ;Cantidad de personas 

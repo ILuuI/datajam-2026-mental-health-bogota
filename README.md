@@ -31,6 +31,7 @@ Este análisis retoma directamente la problemática destacada en la jornada de a
 | Encuesta Distrital de Percepción 2025 | Determinantes sociales de salud percibida | https://www.sdp.gov.co/gestion-estudios-estrategicos/informacion-estadisticas/encuesta-distrital-percepcion |
 | Sistema Distrital de Parques y Escenarios Públicos / Indicador Espacio Público Ciudad, Bogotá D.C. | Inventario de parques y espacio público por localidad | https://datosabiertos.bogota.gov.co/dataset/sistema-distrital-de-parques-y-escenarios-publicos-deportivos y https://datosabiertos.bogota.gov.co/dataset/indicador-espacio-publico-ciudad-bogota-d-c |
 | Límites Político-Administrativos (UPL y Localidades) | Límites geográficos oficiales de las localidades de Bogotá | https://datosabiertos.bogota.gov.co/dataset/localidad-bogota-d-c |
+| Población en Bogotá D.C. 2005-2035 | Población por cada localidad de Bogotá | https://datosabiertos.bogota.gov.co/dataset/piramide-poblacional-bogota-d-c |
 
 ## 4. Metodología general
 
