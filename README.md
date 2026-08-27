@@ -97,6 +97,38 @@ streamlit run app.py
 El dashboard también está desplegado públicamente en:
 https://datajam-2026-mental-health-bogota-luugap.streamlit.app
 
+## 8.1 Reproducibilidad (importante)
+
+Este repositorio contiene los **outputs y datos ya procesados** (`data/processed/`, `outputs/`)
+necesarios para el deploy del dashboard en Streamlit. **No los uses como punto de partida**
+para evaluar reproducibilidad, ya que ejecutar los notebooks sobre ellos los sobrescribirá.
+
+Si tu objetivo es reproducir el experimento desde cero:
+
+1. **No clones el repositorio completo.**
+2. Abre directamente `notebooks/001_pre_processing.ipynb` desde GitHub en Google Colab:
+
+https://colab.research.google.com/drive/1xiMO17akx56fSNPNnHmoOhOhok32rMBy?usp=sharing
+
+3. Ejecuta la **primera celda**, que:
+   - Monta tu Google Drive.
+   - Crea (o verifica) una carpeta de proyecto en tu Drive (`DataJAM_Bogota_2026/`).
+   - Descarga automáticamente solo lo estrictamente necesario (`notebooks/` y `data/raw_zips/`)
+     mediante `git sparse-checkout`, sin incluir los resultados ya calculados.
+   - Si la carpeta ya existe de una corrida previa, te preguntará si deseas sobrescribirla;
+     si eliges no hacerlo, verificará que los archivos necesarios estén completos y descargará
+     únicamente lo que falte.
+4. Continúa ejecutando el notebook 1 de principio a fin (descomprime los datos crudos,
+   los limpia y exporta el dataset maestro a `data/processed/`).
+5. Abre y ejecuta `notebooks/002_post_processing_and_analysis.ipynb` de la misma forma.
+   Este notebook incluye una celda de verificación que confirma que los archivos generados
+   por el notebook 1 existen antes de continuar; si falta alguno, te indicará exactamente
+   qué pasos seguir.
+
+Esto garantiza que todos los resultados (GeoJSON maestro, indicadores, modelo logit,
+figuras) se generen desde los datos crudos, en tu propio Google Drive, sin depender de
+ni sobrescribir los archivos pre-calculados que usa el dashboard en producción.
+
 ## 9. Equipo
 
 GEMMA 2.0 — DataJam Edición 3, 2026.
