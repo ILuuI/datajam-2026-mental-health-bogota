@@ -7,6 +7,7 @@ import folium
 from streamlit_folium import st_folium
 import mapclassify
 import branca.colormap as bcm
+from scipy import stats
 
 st.set_page_config(
     page_title="Salud Mental y Espacio Verde - Bogotá",
@@ -26,9 +27,9 @@ st.markdown(f"""
         .stCaption, [data-testid="stCaptionContainer"] p {{
             font-size: {FONT_SIZE_CAPTION} !important;
         }}
-        h1 {{ 
-            font-size: {FONT_SIZE_TITLE} !important; 
-            text-align: center !important;
+        h1 {{
+             font-size: {FONT_SIZE_TITLE} !important;
+             text-align: center !important;
         }}
         h3 {{ font-size: {FONT_SIZE_SUBHEADER} !important; }}
         [data-testid="stMetricLabel"] {{
@@ -97,7 +98,7 @@ col2.metric(
     "Suicidios registrados (2023-2025)",
     f"{int(suicide_summary_df['total_suicides_2023_2025'].sum())}"
 )
-col3.metric("Fuentes de datos integradas", "4+")
+col3.metric("Fuentes de datos integradas", "5")
 
 st.markdown("---")
 
@@ -249,59 +250,66 @@ with tab2:
 
 
 with tab3:
-    st.subheader("Relación entre infraestructura verde y suicidios")
+    st.subheader("Relación entre infraestructura verde y tasa de suicidios")
 
     merged_df = master_gdf.merge(
         suicide_summary_df,
         left_on="locality_clean", right_on="LOCALIDAD_DEL_HECHO",
         how="inner"
     )
+    merged_df["suicide_rate_per_100k"] = (
+        merged_df["total_suicides_2023_2025"] / merged_df["avg_population_2023_2025"] * 100000
+    )
+
     fig, ax = plt.subplots(figsize=(10, 6))
     sns.regplot(
-        data=merged_df, x="total_green_area_sqm", y="total_suicides_2023_2025",
+        data=merged_df, x="total_green_area_sqm", y="suicide_rate_per_100k",
         scatter_kws={"s": 70, "color": "#1f77b4", "alpha": 0.8},
         line_kws={"color": "#d62728", "linewidth": 2}, ax=ax,
     )
     for i in range(len(merged_df)):
         ax.annotate(
             merged_df["locality_clean"].iloc[i],
-            (merged_df["total_green_area_sqm"].iloc[i], merged_df["total_suicides_2023_2025"].iloc[i]),
+            (merged_df["total_green_area_sqm"].iloc[i], merged_df["suicide_rate_per_100k"].iloc[i]),
             xytext=(5, 5), textcoords="offset points", fontsize=8, alpha=0.8,
         )
-    ax.set_title("Relación entre Infraestructura Verde y Eventos Epidemiológicos (2023-2025)", fontweight="bold")
+    ax.set_title(
+        "Relación entre Infraestructura Verde y Tasa de Suicidios\npor 100,000 Habitantes (2023-2025)",
+        fontweight="bold"
+    )
     ax.set_xlabel("Área Verde Total en Metros Cuadrados (m²)")
-    ax.set_ylabel("Total de Suicidios Registrados (2023-2025)")
+    ax.set_ylabel("Tasa de Suicidios por 100,000 Habitantes (2023-2025)")
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
     plt.tight_layout()
     st.pyplot(fig, use_container_width=True)
     plt.close(fig)
 
-    correlation_coef = merged_df["total_green_area_sqm"].corr(merged_df["total_suicides_2023_2025"])
+    corr_result = stats.pearsonr(merged_df["total_green_area_sqm"], merged_df["suicide_rate_per_100k"])
+    correlation_coef = corr_result.statistic
+    p_value = corr_result.pvalue
 
-    m1, m2 = st.columns(2)
+    m1, m2, m3 = st.columns(3)
     m1.metric("Localidades incluidas", f"{len(merged_df)}")
     m2.metric("Correlación de Pearson (r)", f"{correlation_coef:.3f}")
+    m3.metric("P-valor", f"{p_value:.3f}")
 
     st.caption(
-        f"Se observa una correlación positiva (r = {correlation_coef:.3f}) entre área "
-        "verde total y número de suicidios registrados a nivel de localidad. "
-        "**Esta relación es contraintuitiva respecto a la literatura**, que "
-        "generalmente asocia más espacio verde con mejor salud mental — sin "
-        "embargo, aquí probablemente refleja un efecto de confusión por "
-        "**tamaño poblacional**: las localidades más grandes y pobladas "
-        "(Kennedy, Suba, Engativá) tienden a tener más área verde total *y* "
-        "más eventos en términos absolutos, simplemente por tener más "
-        "habitantes. Un análisis más riguroso requeriría normalizar ambas "
-        "variables por población (tasas per cápita) en vez de valores absolutos."
+        f"Al ajustar por población y calcular la **tasa de suicidios por 100,000 "
+        f"habitantes**, la correlación con infraestructura verde se vuelve "
+        f"prácticamente nula (r = {correlation_coef:.3f}, p = {p_value:.3f}, n = {len(merged_df)}), "
+        "sin significancia estadística. Esto confirma que la correlación positiva "
+        "observada originalmente sobre conteos absolutos era un efecto de confusión "
+        "por tamaño poblacional — las localidades más grandes tienden a tener más "
+        "área verde total **y** más eventos en términos absolutos, simplemente por "
+        "tener más habitantes — y no una asociación real entre ambas variables."
     )
     with st.expander("Limitaciones de esta correlación"):
         st.markdown("""
-        - **Falacia ecológica:** la correlación es a nivel agregado (n=20 localidades), 
-          no a nivel individual. No implica que las personas con más acceso a áreas 
-          verdes tengan más riesgo.
-        - **Variable de confusión no controlada:** población total por localidad, 
-          que probablemente explica gran parte de esta relación espuria.
+        - **Falacia ecológica:** la correlación es a nivel agregado (n=20 localidades),
+           no a nivel individual. No implica nada sobre el riesgo de personas individuales.
+        - **Tamaño muestral reducido:** con solo 20 unidades territoriales, el poder
+           estadístico para detectar asociaciones moderadas es limitado.
         - **No es causal:** correlación no implica causalidad en ninguna dirección.
         """)
 
@@ -354,7 +362,7 @@ with tab4:
         | **A4** | ¿Cuántas personas de su hogar tienen menos de 18 años? |
         | **A6x2** | Parentesco con el jefe del hogar |
         | **poor_health** (var. dependiente) | Derivada de IND_SALUD_101: indicador de percepción del estado de salud |
-        
+
         *Fuente: Diccionario de Datos — Encuesta Distrital de Percepción 2025.*
         """)
 
