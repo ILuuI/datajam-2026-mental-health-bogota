@@ -2,6 +2,7 @@
 ### Caso del suicidio y la salud autopercibida — DataJam Edición 3, 2026
 
 **Equipo:** GEMMA 2.0
+
 **Evento:** DataJam Edición 3 – 2026, iniciativa de la Alcaldía Mayor de Bogotá (DIPEA), desarrollada en el marco del 35.º Simposio Internacional de Estadística 2026, organizado por la Universidad Nacional de Colombia, la Universidad de La Salle, la Escuela Colombiana de Ingeniería Julio Garavito y STEM+CO.
 
 **Dashboard desplegado:** https://datajam-2026-mental-health-bogota-luugap.streamlit.app
