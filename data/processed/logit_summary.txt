@@ -4,7 +4,7 @@ Dep. Variable:            poor_health   No. Observations:                13082
 Model:                          Logit   Df Residuals:                    13069
 Method:                           MLE   Df Model:                           12
 Date:                Fri, 28 Aug 2026   Pseudo R-squ.:                 0.01162
-Time:                        02:21:12   Log-Likelihood:                -7888.8
+Time:                        03:06:34   Log-Likelihood:                -7888.8
 converged:                       True   LL-Null:                       -7981.5
 Covariance Type:            nonrobust   LLR p-value:                 3.246e-33
 ===========================================================================================================

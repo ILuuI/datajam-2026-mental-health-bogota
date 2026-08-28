@@ -1,4 +1,4 @@
-locality_clean,parks_count,total_green_area_sqm,total_surveyed_sample,avg_population_2023_2025,historico_total_suicidios_localidad,hombres,mujeres
+locality_clean,parks_count,total_green_area_sqm,total_surveyed_sample,avg_population_2023_2025,total_suicides_2023_2025,hombre,mujer
 ANTONIO NARINO,55,290166.27027957,,77971.66666666667,12.0,7.0,5.0
 TUNJUELITO,54,879463.146227706,,175683.0,32.0,22.0,10.0
 RAFAEL URIBE URIBE,262,1112265.401647937,,375438.3333333333,43.0,30.0,13.0
