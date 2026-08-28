@@ -134,7 +134,3 @@ venv\Scripts\activate          # Windows
 pip install -r requirements.txt
 streamlit run app.py
 ```
-
-## 9. Equipo
-
-GEMMA 2.0 — DataJam Edición 3, 2026.
