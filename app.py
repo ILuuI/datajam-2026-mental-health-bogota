@@ -1,13 +1,22 @@
-import streamlit as st
+# Data manipulation
 import pandas as pd
-import geopandas as gpd
+
+# Statistical analysis
+from scipy import stats
+
+# Visualization
 import matplotlib.pyplot as plt
 import seaborn as sns
-import folium
-from streamlit_folium import st_folium
-import mapclassify
+
+# Geospatial analysis
 import branca.colormap as bcm
-from scipy import stats
+import folium
+import geopandas as gpd
+import mapclassify
+
+# Streamlit
+import streamlit as st
+from streamlit_folium import st_folium
 
 st.set_page_config(
     page_title="Salud Mental y Espacio Verde - Bogotá",
@@ -15,7 +24,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# --- Global style configuration ---
+# Configuración global de estilos
 FONT_SIZE_TITLE = "30px"
 FONT_SIZE_TAB = "16px"
 FONT_SIZE_SUBHEADER = "26px"
@@ -252,11 +261,7 @@ with tab2:
 with tab3:
     st.subheader("Relación entre infraestructura verde y tasa de suicidios")
 
-    merged_df = master_gdf.merge(
-        suicide_summary_df,
-        left_on="locality_clean", right_on="LOCALIDAD_DEL_HECHO",
-        how="inner"
-    )
+    merged_df = master_gdf.copy()
     merged_df["suicide_rate_per_100k"] = (
         merged_df["total_suicides_2023_2025"] / merged_df["avg_population_2023_2025"] * 100000
     )
@@ -295,14 +300,14 @@ with tab3:
     m3.metric("P-valor", f"{p_value:.3f}")
 
     st.caption(
-        f"Al ajustar por población y calcular la **tasa de suicidios por 100,000 "
-        f"habitantes**, la correlación con infraestructura verde se vuelve "
+        f"Al ajustar por población y calcular la tasa de suicidios por 100,000 "
+        f"habitantes, la correlación con infraestructura verde se vuelve "
         f"prácticamente nula (r = {correlation_coef:.3f}, p = {p_value:.3f}, n = {len(merged_df)}), "
         "sin significancia estadística. Esto confirma que la correlación positiva "
         "observada originalmente sobre conteos absolutos era un efecto de confusión "
-        "por tamaño poblacional — las localidades más grandes tienden a tener más "
-        "área verde total **y** más eventos en términos absolutos, simplemente por "
-        "tener más habitantes — y no una asociación real entre ambas variables."
+        "por tamaño poblacional, ya que las localidades más grandes tienden a tener "
+        "más área verde total y más eventos en términos absolutos, simplemente por "
+        "tener más habitantes, y no una asociación real entre ambas variables."
     )
     with st.expander("Limitaciones de esta correlación"):
         st.markdown("""
